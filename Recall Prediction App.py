@@ -10,7 +10,18 @@ import pickle
 import streamlit as st
 
 # Load the saved model
-loaded_model = pickle.load(open('C:/Users/Sakthi Spark/Desktop/AI and ML/Model deploying/Label data/trained_model.sav','rb'))
+
+file_path = r"C:/Users/Sakthi Spark/Desktop/AI and ML/Model deploying/Label data/trained_model.sav"
+
+try:
+    with open(file_path, 'rb') as f:
+        loaded_model = pickle.load(f)
+    print("Model loaded successfully!")
+except FileNotFoundError:
+    print("File not found. Check the path.")
+except Exception as e:
+    print("Error loading model:", e)
+
 
 # Prediction function
 def recall_prediction(Product_Description, Manufacturing_Recall_Reason):
